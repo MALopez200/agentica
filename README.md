@@ -1,4 +1,5 @@
 🤖 Agéntica
+
 Infraestructura de agentes de IA autónomos diseñada para la automatización integral de procesos de negocio. Este sistema prioriza la privacidad, la eficiencia y el control total de la infraestructura mediante procesamiento local y el uso de modelos de código abierto (open-source), eliminando por completo la dependencia de APIs externas. ⚙️
 
 🎯 Principios del Sistema
@@ -21,9 +22,9 @@ Orquestación de LLMs: Ollama (Despliegue local de modelos como Llama y Qwen)
 Base de Datos: SQLite
 
 💻 Instrucciones de Uso
+
 Bash
-python main.py          # Inicializa la base de datos e inserta los datos de prueba
-python test_cliente.py  # Ejecuta el pipeline de extracción de entidades del producto
+python main.py python test_cliente.py
 
 👤 Autor
 Miguel Ángel
@@ -35,6 +36,7 @@ Miguel Ángel
 --------------------------------------------------------------------------------------------------------------------------------
 
 🤖 Agéntica
+
 An autonomous AI agent infrastructure designed for end-to-end business process automation. This system prioritizes data privacy, efficiency, and full infrastructure control by leveraging local processing and open-source models, completely eliminating reliance on external third-party APIs. ⚙️
 
 🎯 Core Principles
@@ -57,9 +59,9 @@ LLM Orchestration: Ollama (Local deployment of open-source models such as Llama 
 Database: SQLite
 
 💻 Usage Instructions
+
 Bash
-python main.py          # Initializes the database and populates sample data
-python test_cliente.py  # Runs the product entity extraction pipeline
+python main.py python test_cliente.py
 
 👤 Author
 Miguel Ángel
