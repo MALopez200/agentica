@@ -24,6 +24,7 @@ Base de Datos: SQLite
 Bash
 python main.py          # Inicializa la base de datos e inserta los datos de prueba
 python test_cliente.py  # Ejecuta el pipeline de extracción de entidades del producto
+
 👤 Autor
 Miguel Ángel
 
@@ -59,6 +60,7 @@ Database: SQLite
 Bash
 python main.py          # Initializes the database and populates sample data
 python test_cliente.py  # Runs the product entity extraction pipeline
+
 👤 Author
 Miguel Ángel
 
