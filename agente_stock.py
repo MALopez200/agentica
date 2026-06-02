@@ -13,7 +13,7 @@ SELECT nombre FROM producto
 productos = [unidecode(fila[0].lower()) for fila in cursor.fetchall()]
 lista_productos = ', '.join(productos)
 
-correo = "Hola, ¿tienen desinfectante? Necesito 5 litros."
+correo = "Hola, ¿tienen desinfectante Lavanda 20L? Necesito 5 litros."
 
 prompt = f"Eres un asistente que extrae el producto de un correo de cliente. Lista de productos disponibles: {lista_productos}. Si en el correo se menciona alguno de esos productos, debes responder ÚNICAMENTE con un JSON que contenga la clave \"producto\" y el valor exactamente como aparece en la lista (todo en minúsculas y sin acentos). Ejemplo: si el correo dice '¿tienen desinfectante?' y 'desinfectante' está en la lista, responde {{\"producto\": \"desinfectante\"}}. Si no se menciona ningún producto de la lista, responde {{\"tipo\": \"no_stock\"}}. No añadas texto adicional ni uses comillas simples."
 
