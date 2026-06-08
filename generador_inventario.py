@@ -28,14 +28,20 @@ while True:
     nombre = f'{tipo_aleatorio} {aroma_aleatorio} {formato_aleatorio}'
     stock = random.randint(1,10)
     precio = random.uniform(5000.00, 50000.00)
+    categoria = tipo_aleatorio  
+    proveedor = random.choice(['Proveedor A', 'Proveedor B', 'Proveedor C'])
+    stock_minimo = random.randint(1, 10)
 
     cursor.execute('''
-        INSERT INTO producto (nombre,stock,precio)
-        VALUES (?,?,?)
+        INSERT INTO producto (nombre,stock,precio,categoria,proveedor,stock_minimo)
+        VALUES (?,?,?,?,?,?)
         ON CONFLICT (nombre) DO UPDATE SET
         stock = stock + excluded.stock,
-        precio = excluded.precio
-        ''', (nombre,stock,precio))
+        precio = excluded.precio,
+        categoria = excluded.categoria,
+        proveedor = excluded.proveedor,
+        stock_minimo = excluded.stock_minimo
+        ''', (nombre,stock,precio,categoria,proveedor,stock_minimo))
     
     conexion.commit()
 

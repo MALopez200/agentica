@@ -3,10 +3,7 @@ import ollama
 import json
 from unidecode import unidecode
 
-conexion = sqlite3.connect('roble.db')
-cursor = conexion.cursor()
-
-def extraer_producto(correo):
+def extraer_producto(correo, cursor):
 
     cursor.execute('SELECT nombre FROM producto')
     producto_db = [unidecode(fila[0].lower()) for fila in cursor.fetchall()]
@@ -39,5 +36,40 @@ def extraer_producto(correo):
     try:
         datos = json.loads(json_str)
         return datos.get('producto')
+    except json.JSONDecodeError:
+        return None
+    
+def extraer_pedido(correo, cursor):
+
+    cursor.execute('SELECT nombre FROM producto')
+    producto_db = [unidecode(fila[0].lower()) for fila in cursor.fetchall()]
+
+    if not producto_db:
+        return None 
+    
+    lista_productos = ','.join(producto_db)
+
+    prompt = f'Eres un asistente que revisa {lista_productos} y me devuelves un JSON con las claves  \"producto\"  y \"cantidad\" por ejemplo si el correo dice \"necesito 300 unidades de jabon para manos\" debes responder algo como \"producto\": \"jabon para manos\" \"cantidad\": \"300\" recuerda que siempre en formato JSON y si no entiendes el mensaje dime exclusivamente el JSON \"error\": \"no_entiendo\"'
+
+    respuesta = ollama.chat(
+    model= 'llama3.2:latest', 
+    messages=[
+        {'role':'system','content':prompt},
+        {'role':'user','content':correo}
+        ]
+    )
+    contenido = respuesta['message']['content']
+    
+    inicio = contenido.find('{')
+    fin = contenido.find('}')
+
+    if inicio != -1 and fin != -1:
+        json_str = contenido[inicio:fin+1]
+    else:
+        json_str = ''
+
+    try:
+        datos = json.loads(json_str)
+        return datos
     except json.JSONDecodeError:
         return None
